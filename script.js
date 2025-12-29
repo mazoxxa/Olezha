@@ -1,3 +1,4 @@
+// script.js
 let level = "soft";
 
 const facts = {
@@ -26,7 +27,6 @@ const facts = {
     "Его утро начинается вечером."
   ],
   hard: [
-    /* ПРЕДЫДУЩИЕ 10 ЖЁСТКИХ */
     "Если Олежа сказал «пошли домой» — готовься к пиздецу.",
     "Казино для него — как храм.",
     "Алкоголь боится Олежу.",
@@ -37,8 +37,6 @@ const facts = {
     "Он может всё. Особенно хуйню.",
     "С ним нельзя случайно.",
     "Легенда. Опасная. Настоящая.",
-
-    /* НОВЫЕ +20 ЖЁСТКИХ */
     "Олежа — единственный человек, который может устать от бухла, но не остановиться.",
     "Если он сказал «я в норме» — ты в опасности.",
     "Казино для Олежи — не риск, а воспоминания.",
@@ -78,4 +76,55 @@ function generate() {
   const arr = facts[level];
   const text = arr[Math.floor(Math.random() * arr.length)];
   document.getElementById("result").innerText = text;
+}
+
+/* ========= CALL OLEZHA ========= */
+let callTimer = null;
+
+function callOlezha() {
+  const statusEl = document.getElementById("callStatus");
+  const btn = document.querySelector(".call-btn");
+  const punktEl = document.getElementById("punkt1");
+
+  if (!statusEl || !btn || !punktEl) return;
+
+  // Показать инструкцию ТОЛЬКО после нажатия
+  punktEl.classList.remove("hidden");
+
+  // Убить прошлый таймер (если был)
+  if (callTimer) clearInterval(callTimer);
+
+  // 3..11 минут
+  const minutesTotal = Math.floor(Math.random() * 9) + 3;
+  let secondsLeft = minutesTotal * 60;
+
+  btn.disabled = true;
+
+  // Сразу после нажатия: таймер + НЕкликабельная строка
+  statusEl.innerHTML =
+    "✅ Вызов принят. Олежа выдвигается…<br>" +
+    "⚠️ Если не прибыл — см. инструкцию ниже.";
+
+  callTimer = setInterval(() => {
+    secondsLeft--;
+
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    const ss = String(s).padStart(2, "0");
+
+    statusEl.innerHTML =
+      `⏳ Олежа выдвигается… осталось ${m}:${ss}<br>` +
+      "⚠️ Если не прибыл — см. инструкцию ниже.";
+
+    if (secondsLeft <= 0) {
+      clearInterval(callTimer);
+      callTimer = null;
+
+      statusEl.innerHTML =
+        `🥃 Через ${minutesTotal} минут будет.<br>` +
+        "⚠️ Если не прибыл — см. инструкцию ниже.";
+
+      btn.disabled = false;
+    }
+  }, 1000);
 }
