@@ -1,0 +1,315 @@
+:root{
+  --bg:#0f0f0f;
+  --panel:#1c1c1c;
+  --panel2:#141414;
+  --accent:#ff3c3c;
+  --accent2:#ffb020;
+  --text:#ffffff;
+  --muted:#bdbdbd;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* TOP NAV (самый верх) */
+.topnav{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.topnav-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand{
+  font-weight: 1000;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.92);
+}
+.topnav-links{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.topnav a{
+  text-decoration:none;
+  color:#fff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.topnav a:hover{
+  background: rgba(255,255,255,0.10);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height: calc(100vh - 54px); /* чтобы nav не съедал */
+}
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Затемнение слабее чем первоначальное 0.65 → 0.55 */
+.overlay{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 20px;
+}
+.hero-content{
+  max-width: 980px;
+}
+
+/* Заголовок выделяем */
+.overlay h1{
+  margin: 0 0 14px;
+  font-size: 56px;
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+}
+
+/* Слоган выделяем */
+.hero-tagline{
+  margin: 0 auto 14px;
+  font-size: 20px;
+  font-weight: 1000;
+  line-height: 1.4;
+  display: inline-block;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255,60,60,0.14);
+  border: 1px solid rgba(255,60,60,0.35);
+  box-shadow: 0 12px 30px rgba(255,60,60,0.12);
+}
+.hero-hint{
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Разделители */
+.divider{
+  background: linear-gradient(90deg, #000, #1a1a1a, #000);
+  padding: 18px 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.divider span{
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* SECTION BASE */
+.section{
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+.section h2{
+  margin-top: 0;
+  letter-spacing: .5px;
+}
+
+/* DOSSIER */
+.cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap: 20px;
+}
+.card{
+  background: var(--panel);
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.card h3{ margin-top: 0; }
+.card p{ color: var(--muted); line-height: 1.45; }
+
+/* BETWEEN blocks */
+.between{
+  background: var(--panel2);
+  border: 1px dashed rgba(255,255,255,0.18);
+  border-radius: 16px;
+  padding: 18px 18px;
+  margin: 18px auto 28px;
+}
+.between h3{ margin: 0 0 6px; }
+.between p{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* PHOTOS */
+.photos .photo-block{
+  margin: 0 auto 46px;
+  text-align: center;
+}
+.photos .photo-block img{
+  width: min(560px, 100%);
+  display: block;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+}
+
+/* Фото 4: было 700, теперь -30% => 490 */
+.photos .photo-4 img{
+  width: min(490px, 100%);
+}
+
+/* подписи */
+.caption{
+  margin: 14px auto 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 1000;
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255,60,60,0.12);
+  border: 1px solid rgba(255,60,60,0.35);
+}
+
+/* GENERATOR highlight */
+.generator{ text-align: center; }
+.gen-box{
+  background: radial-gradient(circle at top, rgba(255,60,60,0.18), rgba(0,0,0,0.0)),
+              var(--panel);
+  border: 1px solid rgba(255,60,60,0.25);
+  border-radius: 22px;
+  padding: 34px 18px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+}
+.levels{
+  margin: 16px 0 8px;
+  display:flex;
+  gap: 10px;
+  justify-content:center;
+  flex-wrap: wrap;
+}
+.levels button{
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+.main-btn{
+  margin: 12px 0 0;
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 12px;
+  background: var(--accent);
+  color:#fff;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(255,60,60,0.35);
+}
+#result{
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding: 50px 20px;
+  background: #000;
+}
+.footer img{
+  max-width: 480px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+}
+
+/* review */
+.review-box{
+  max-width: 900px;
+  margin: 22px auto 18px;
+  padding: 18px 18px;
+  border-radius: 16px;
+  background: rgba(255,176,32,0.10);
+  border: 1px solid rgba(255,176,32,0.35);
+}
+.review{
+  font-size: 26px;
+  font-weight: 1000;
+  margin: 0 0 8px;
+}
+.small{ margin:0; color: var(--muted); }
+
+/* contacts */
+.contacts{
+  max-width: 900px;
+  margin: 22px auto 0;
+  padding: 18px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.contacts h3{ margin: 0 0 10px; }
+.contact-line{
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+.tiny{
+  margin-top: 26px;
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+}
+
+/* MOBILE */
+@media (max-width: 520px){
+  .overlay h1{ font-size: 38px; }
+  .hero-tagline{ font-size: 18px; }
+  .caption{ font-size: 20px; }
+  .topnav-inner{ padding: 10px 10px; }
+}
